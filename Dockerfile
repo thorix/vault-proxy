@@ -15,7 +15,10 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
       && kubectl version --client
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.default.conf /etc/nginx/conf.d/default.conf
+
+# Add a hello index file
+COPY index.html /var/www/localhost/htdocs
 
 EXPOSE 80
 
