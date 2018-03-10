@@ -14,5 +14,12 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
       && mv ./kubectl /usr/local/bin/kubectl \
       && kubectl version --client
 
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["nginx", "-g", "daemon off;"]
 
